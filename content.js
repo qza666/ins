@@ -68,6 +68,8 @@
         brandIcon: $("igBrandIcon"),
         inputKey: $("igInputCardKey"),
         btnLogin: $("igBtnLogin"),
+        btnLoginText: $("igBtnLoginText"),
+        loginSpinner: $("igLoginSpinner"),
         btnChange: $("igBtnChangeKey"),
         errorText: $("igErrorText"),
         countText: $("igCountdownText"),
@@ -84,16 +86,16 @@
             if (this.brandIcon) this.brandIcon.src = chrome.runtime.getURL("icons/icon48.png");
         },
 
-        showLogin(show) {
-            if (!this.app) return;
-            this.app.style.display = show ? "none" : "block"; // 这里逻辑似乎反了，但在你的HTML结构下可能意为"显示悬浮窗"
-            // 修正逻辑：如果是登录状态，显示小球；如果是未登录，显示登录卡片
-            if (show) {
-                this.loginCard.style.display = "block";
-                this.app.style.display = "block"; // 确保容器可见
-            } else {
-                this.loginCard.style.display = "none";
-            }
+        showLogin(showLoginCard) {
+            if (!this.app || !this.backdrop || !this.loginCard) return;
+            const shouldShowLogin = !!showLoginCard;
+
+            this.backdrop.style.display = shouldShowLogin ? "flex" : "none";
+            this.loginCard.style.display = shouldShowLogin ? "block" : "none";
+            this.app.style.display = shouldShowLogin ? "none" : "block";
+
+            // 悬浮按钮在未登录时不需要展示
+            if (this.btnFloat) this.btnFloat.style.display = shouldShowLogin ? "none" : "flex";
         },
 
         toast(msg, type = "error") {
@@ -632,6 +634,7 @@
         UI.expireText.textContent = expireStr || "未知";
         UI.errorText.textContent = "";
         UI.showLogin(false);
+        if (UI.backdrop) UI.backdrop.style.display = "flex";
         if (countdownTimer) clearInterval(countdownTimer);
         const tick = () => {
             const remain = Math.floor((expireTime - Date.now()) / 1000);
@@ -713,11 +716,21 @@
     UI.btnLogin.onclick = async () => {
         const key = UI.inputKey.value.trim();
         if (!key) { UI.errorText.textContent = "请输入卡密"; return; }
+
+        const restoreLoginButton = () => {
+            UI.btnLogin.disabled = false;
+            if (UI.btnLoginText) UI.btnLoginText.textContent = "登录";
+            if (UI.loginSpinner) UI.loginSpinner.style.display = "none";
+        };
+
+        UI.errorText.textContent = "";
         UI.btnLogin.disabled = true;
-        UI.btnLogin.querySelector("span").textContent = "验证中...";
+        if (UI.btnLoginText) UI.btnLoginText.textContent = "验证中...";
+        if (UI.loginSpinner) UI.loginSpinner.style.display = "inline-block";
+
         const success = await performLogin(key);
-        UI.btnLogin.disabled = false;
-        UI.btnLogin.querySelector("span").textContent = "登录";
+
+        restoreLoginButton();
         if (!success) UI.errorText.textContent = "登录失败";
     };
 

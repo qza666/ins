@@ -1,0 +1,132 @@
+<div class="ig-root">
+  <button class="ig-floating-btn" id="igFloatingBtn" title="Instagram 涨粉面板">
+    <img id="igFloatingIcon" class="ig-floating-btn-icon" alt="IG" />
+  </button>
+
+  <div class="ig-modal-backdrop" id="igModalBackdrop">
+    <div class="ig-modal-layout">
+      <div class="ig-app" id="igApp">
+        <div class="ig-app-header">
+          <div class="ig-brand">
+            <div class="ig-brand-logo">
+              <img
+                id="igBrandIcon"
+                class="ig-brand-logo-img"
+                alt="Instagram 智能涨粉"
+              />
+            </div>
+            <div class="ig-brand-title">Instagram 涨粉面板</div>
+          </div>
+          <div class="ig-header-right">
+            <div class="ig-badge-row">
+              <span>剩余时间：</span>
+              <span id="igCountdownText">--:--:--</span>
+            </div>
+            <div class="ig-badge-row">
+              <span>到期时间：</span>
+              <span id="igExpireAtText">--</span>
+            </div>
+            <div class="ig-badge-row">
+              <span>当前卡密：</span>
+              <span id="igKeyShort">未登录</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ig-panel" id="igConsolePanel">
+          <div class="ig-row-top">
+            <div>Instagram 涨粉控制台</div>
+            <div class="ig-row-top-right">
+              <button class="ig-btn-link" id="igBtnChangeKey">切换卡密</button>
+              <a
+                class="ig-buy-link"
+                href="https://ins.trtrc.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                购买卡密
+              </a>
+            </div>
+          </div>
+
+          <div class="ig-toggle-row">
+            <div>
+              涨粉开关
+              <span>开启后，将按既定策略自动进行粉丝增长与互动。</span>
+            </div>
+            <div class="ig-switch-wrapper">
+              <label class="ig-switch">
+                <input type="checkbox" id="igToggleGrowth" />
+                <span class="ig-slider"></span>
+              </label>
+              <span id="igGrowthStatusText">已关闭</span>
+            </div>
+          </div>
+
+          <div class="ig-stats">
+            <div class="ig-stat-card">
+              <div class="ig-stat-label">
+                数据数
+                <span class="ig-stat-tag">Data</span>
+              </div>
+              <div class="ig-stat-main" id="igFollowersNow">0</div>
+            </div>
+
+            <div class="ig-stat-card">
+              <div class="ig-stat-label">
+                关注数
+                <span class="ig-stat-tag">Following</span>
+              </div>
+              <div class="ig-stat-main" id="igFollowingTotal">0</div>
+            </div>
+
+            <div class="ig-stat-card">
+              <div class="ig-stat-label">
+                点赞数
+                <span class="ig-stat-tag">Likes</span>
+              </div>
+              <div class="ig-stat-main" id="igLikesTotal">0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ig-login-card" id="igLoginCard">
+        <div>
+          <div class="ig-form-group">
+            <div class="ig-form-label-row">
+              <div class="ig-form-label">卡密</div>
+              <a
+                class="ig-login-link"
+                href="https://ins.trtrc.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                没有卡密？点击购买
+              </a>
+            </div>
+            <input
+              id="igInputCardKey"
+              class="ig-input"
+              type="password"
+              placeholder="请输入你的卡密"
+              autocomplete="off"
+            />
+          </div>
+          <div class="ig-error" id="igErrorText"></div>
+        </div>
+
+        <div class="ig-modal-footer">
+          <button class="ig-btn-primary" id="igBtnLogin">
+            <span id="igBtnLoginText">登录</span>
+            <span
+              class="ig-spinner"
+              id="igLoginSpinner"
+              style="display: none"
+            ></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

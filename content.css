@@ -1,0 +1,405 @@
+.ig-root,
+.ig-root * {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 悬浮按钮 */
+.ig-floating-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: none;
+  background: #6366f1;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3);
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.ig-floating-btn:hover {
+  transform: translateY(-1px);
+}
+
+.ig-floating-btn-icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* 弹窗背景 */
+.ig-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 2147483646;
+}
+
+/* 弹窗布局 */
+.ig-modal-layout {
+  width: 100%;
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 主面板（登录后） */
+.ig-app {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 14px 14px 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.22);
+}
+
+/* 头部 */
+.ig-app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.ig-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ig-brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  background: #6366f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ig-brand-logo-img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.ig-brand-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ig-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.ig-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 通用链接 / 按钮样式 */
+.ig-buy-link {
+  font-size: 12px;
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ig-btn-link {
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  color: #2563eb;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* 控制台面板 */
+.ig-panel {
+  margin-top: 6px;
+  border-radius: 12px;
+  padding: 10px 10px 8px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.ig-panel.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+.ig-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.ig-row-top-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* 开关行 */
+.ig-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  font-size: 13px;
+}
+
+.ig-toggle-row span {
+  display: block;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.ig-switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.ig-switch {
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+
+.ig-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ig-slider {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: #e5e7eb;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ig-slider::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.2);
+  transition: 0.2s;
+}
+
+.ig-switch input:checked + .ig-slider {
+  background: #22c55e;
+}
+
+.ig-switch input:checked + .ig-slider::before {
+  transform: translate(16px, -50%);
+}
+
+/* 统计卡片 */
+.ig-stats {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+@media (max-width: 640px) {
+  .ig-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.ig-stat-card {
+  border-radius: 10px;
+  padding: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  font-size: 11px;
+}
+
+.ig-stat-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #6b7280;
+}
+
+.ig-stat-main {
+  margin-top: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ig-stat-sub {
+  margin-top: 1px;
+  font-size: 11px;
+  color: #16a34a;
+}
+
+.ig-stat-tag {
+  padding: 1px 6px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  font-size: 10px;
+  color: #4b5563;
+}
+
+/* ===== 登录卡片 ===== */
+.ig-login-card {
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 18px 14px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.24);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* 表单区 */
+.ig-form-group {
+  margin-bottom: 8px;
+}
+
+.ig-form-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.ig-form-label {
+  font-size: 13px;
+  color: #111827;
+}
+
+.ig-input {
+  width: 100%;
+  border-radius: 9px;
+  padding: 8px 10px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #111827;
+  font-size: 13px;
+  outline: none;
+  transition: 0.15s ease;
+}
+
+.ig-input::placeholder {
+  color: #9ca3af;
+}
+
+.ig-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.28);
+  background: #ffffff;
+}
+
+/* 错误提示 */
+.ig-error {
+  min-height: 14px;
+  font-size: 11px;
+  color: #ef4444;
+  margin-top: 2px;
+}
+
+/* 登录界面购买链接 */
+.ig-login-link {
+  font-size: 11px;
+  color: #2563eb;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 按钮区域 */
+.ig-modal-footer {
+  margin-top: 4px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ig-btn-primary {
+  border-radius: 999px;
+  border: none;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #6366f1;
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.45);
+}
+
+.ig-btn-primary[disabled] {
+  opacity: 0.7;
+  box-shadow: none;
+  cursor: default;
+}
+
+.ig-spinner {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid rgba(148, 163, 184, 0.4);
+  border-top-color: #ffffff;
+  animation: ig-spin 0.7s linear infinite;
+}
+
+@keyframes ig-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
